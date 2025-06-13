@@ -5,6 +5,7 @@ import User from "../models/User.js";
 export const protect =async(req,res,next)=>{
     console.log("authMiddleware called");
     try{
+        console.log("Request Headers:", req.headers); // Log the request headers for debugging
         const {userId}=req.auth();
         console.log("User ID from auth:", userId); // Log the userId for debugging
         if(!userId){
