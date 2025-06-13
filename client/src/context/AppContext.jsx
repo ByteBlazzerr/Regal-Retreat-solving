@@ -46,8 +46,6 @@ export const AppProvider =({children})=>{
             toast.error("No token found. Are you signed in?");
             return;
             }
-
-
             const {data}=await axios.get('/api/user',{headers:{Authorization:`Bearer ${token}`}})
             if(data.success){
                 console.log("User Details Fetched Successfully");
@@ -75,6 +73,24 @@ export const AppProvider =({children})=>{
     useEffect(()=>{
         fetchRooms();
     })
+
+  // ✅ Axios Interceptor to attach token automatically
+  useEffect(() => {
+    const attachToken = async (config) => {
+      const token = await getToken();
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+      return config;
+    };
+
+    const interceptor = axios.interceptors.request.use(attachToken);
+
+    return () => {
+      axios.interceptors.request.eject(interceptor);
+    };
+  }, [getToken]);
+
 
     const value={
         currency,navigate,user,getToken,isOwner,setIsOwner,axios,showHotelReg,setShowHotelReg,searchedCities,setSearchedCities,rooms,setRooms
