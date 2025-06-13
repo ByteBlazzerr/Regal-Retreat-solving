@@ -1,6 +1,7 @@
 // GET /api/user
 
 export const getUserData=async(req,res)=>{
+    console.log("getUserData called");
     try{
         const role =req.user.role;
         const recentSearchedCities=req.user.recentSearchedCities;
