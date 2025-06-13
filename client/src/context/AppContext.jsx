@@ -47,9 +47,10 @@ export const AppProvider =({children})=>{
                 // Retry Fetching User Details after 5 seconds
                 setTimeout(()=>{
                     fetchUser()
-                },5000)
+                },5000000)
             }
         }catch(error){
+            console.log("Error in AppContext");
             toast.error(error.message)
         }
     }
