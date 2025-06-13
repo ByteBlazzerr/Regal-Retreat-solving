@@ -48,7 +48,7 @@ export const AppProvider =({children})=>{
             }
 
 
-            const {data}=await axios.get('/api/user',{headers:{Authorization:`Bearer ${await getToken()}`}})
+            const {data}=await axios.get('/api/user',{headers:{Authorization:`Bearer ${token}`}})
             if(data.success){
                 console.log("User Details Fetched Successfully");
                 setIsOwner(data.role==="hotelOwner");
