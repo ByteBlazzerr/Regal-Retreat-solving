@@ -31,6 +31,11 @@ app.use("/api/clerk",clerkWebhooks)
 
 
 app.get('/',(req,res)=>res.send("API is working fine"))
+
+app.get('/api/ping', (req, res) => {
+  res.json({ success: true, message: "Server is alive!" });
+});
+
 app.use('/api/user',userRouter);
 app.use('/api/hotels',hotelRouter);
 app.use('/api/rooms',roomRouter);
