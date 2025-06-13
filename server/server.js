@@ -32,11 +32,9 @@ app.use("/api/clerk",clerkWebhooks)
 
 app.get('/',(req,res)=>res.send("API is working fine"))
 
-app.get('/api/ping', (req, res) => {
-  res.json({ success: true, message: "Server is alive!" });
-});
-
+console.log("Check point one in server");
 app.use('/api/user',userRouter);
+console.log("Check point 2 in cinsole.log");
 app.use('/api/hotels',hotelRouter);
 app.use('/api/rooms',roomRouter);
 app.use('/api/bookings',bookingRouter);
