@@ -39,6 +39,15 @@ export const AppProvider =({children})=>{
     const fetchUser = async()=>{
         try{
             console.log("Fetching User Details");
+            const token = await getToken();
+            console.log("Clerk Token:", token); // Add this line
+
+            if (!token) {
+            toast.error("No token found. Are you signed in?");
+            return;
+            }
+
+
             const {data}=await axios.get('/api/user',{headers:{Authorization:`Bearer ${await getToken()}`}})
             if(data.success){
                 console.log("User Details Fetched Successfully");
